@@ -13,7 +13,7 @@ The project plan can be found [here](https://docs.google.com/spreadsheets/d/1BJS
 
 ### ER Diagram
 
-![Schema](https://user-images.githubusercontent.com/20842692/74099850-f39dee00-4b4d-11ea-8a31-9fd4c48e0b7f.png)
+![Schema](https://user-images.githubusercontent.com/20842692/74106172-485f5a00-4b8a-11ea-832a-dcb0d79d7507.png)
 
 ### API Documentation
 
