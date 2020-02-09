@@ -1,0 +1,73 @@
+{% extends 'layout_base.html' %}
+{% block content %}
+
+<div class="container">
+  <div class="row col-md-5">
+  <!-- code start -->
+  <div class="twPc-div">
+      <a class="twPc-bg twPc-block"></a>
+      <div>
+          <a href="#" class="twPc-avatarLink">
+              <img  src="{{user.picture}}" class="twPc-avatarImg">
+          </a>
+  
+          <div class="twPc-divUser">
+              <div class="twPc-divName">
+                  <a style="text-decoration: none" >{{user.name}}</a>
+              </div>
+          </div>
+  
+          <div class="twPc-divStats">
+              <ul class="twPc-Arrange">
+                  <li class="twPc-ArrangeSizeFit">
+                      <a>
+                          <span class="twPc-StatLabel twPc-block">Posts</span>
+                          <span class="twPc-StatValue">{{user.post_count}}</span>
+                      </a>
+                  </li>
+                  <li class="twPc-ArrangeSizeFit">
+                      <a>
+                          <span class="twPc-StatLabel twPc-block">Scores</span>
+                          <span class="twPc-StatValue">{{user.score}}</span>
+                      </a>
+                  </li>
+                  <li class="twPc-ArrangeSizeFit">
+                      <a>
+                          <span class="twPc-StatLabel twPc-block">Badge</span>
+                          <span class="twPc-StatValue">Level {{user.get_badge_level()}}</span>
+                      </a>
+                  </li>
+              </ul>
+          </div>
+      </div>
+  </div>
+  </div>
+  </div>
+  <div class="container">
+    <ul class="nav nav-tabs">
+        <li class="active">
+          <a href="#">Posts</a>
+        </li>
+      </ul>
+    </div>
+
+
+{% for post in posts %}
+<div class="container">
+  <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+      <a href="{{url_for('post_detail', post_id=post.id) }}" style="text-decoration: none"><h2>{{post.title}}</h2></a>
+      <small><b>Author</b>: {{post.author.name}},</small>
+      <small><b>Bagde </b>: Level {{post.author.get_badge_level()}}</small>
+      <span class="w3-right w3-opacity">{{post.get_json()['time']}} hours ago</span>
+      <hr class="w3-clear">
+      {{post.content|markdown}}
+        <div class="w3-row-padding" style="margin:0 -16px">
+      </div>
+      <hr class="w3-clear">
+      <a href="{{url_for('upvote', post_id=post.id) }}" style="text-decoration: none; color: white;"><button type="button" class="w3-button w3-theme-d5 w3-margin-bottom" >Upvote  {{post.likes}}</button></a> 
+      <a href="{{url_for('post_detail', post_id=post.id) }}" style="text-decoration: none; color: white;"><button type="button" class="w3-button w3-theme-d5 w3-margin-bottom" ><i class="fa fa-comment"></i> Comment</button></a> 
+    </div>
+  </div>
+{% endfor %}
+
+{% endblock%}

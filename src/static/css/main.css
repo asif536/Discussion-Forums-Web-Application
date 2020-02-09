@@ -1,0 +1,42 @@
+a{
+    color:#47649F;
+}
+
+body{
+    height: 100%;
+    font-family:'helvetica';
+}
+
+/*-- Bootstrap Override Style --*/
+
+
+/*-- Content Style --*/
+
+.post-footer-option li{
+    float:left;
+    margin-right:200px;
+    padding-bottom:15px;
+}
+
+.post-footer-option li a{
+    color:#AFB4BD;
+    font-weight:500;
+    font-size:1.3rem;
+}
+
+.photo-profile{
+    border:1px solid #DDD;
+}
+
+.anchor-username h4{
+    font-weight:bold;
+}
+
+.anchor-time{
+    color:#ADB2BB;
+    font-size:1.2rem;
+}
+
+.post-footer-comment-wrapper{
+    background-color:#F6F7F8;
+}

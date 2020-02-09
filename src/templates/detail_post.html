@@ -1,0 +1,54 @@
+{% extends 'layout_base.html' %}
+{% block content %}
+<div class="container">
+    <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        {% if post.title %}
+        <h2>{{post.title}}</h2>
+        <small><b>Author</b> : <a href="{{url_for('profile', user_id=post.author.id) }} " style="text-decoration: none">{{post.author.name}}</a>,</small>
+        <small><b>Bagde </b> : Level {{post.author.get_badge_level()}}</small>
+        <span class="w3-right w3-opacity">{{post.get_json()['time']}} hours ago</span>
+
+        <hr class="w3-clear">
+        {% else %}
+        <img  src="{{post.author.picture}}" class="img-circle" height="40px" width="40px"> <a href="{{url_for('profile', user_id=post.author.id) }}" style="text-decoration: none"></a> {{post.author.name}}</a><br><br>
+        {%endif%}
+        {{post.content|markdown}}
+        <hr class="w3-clear">
+        <a href="{{url_for('upvote', post_id=post.id) }}" style="text-decoration: none; color: white;"><button type="button" class="w3-button w3-theme-d5 w3-margin-bottom" >Upvote  {{post.likes}}</button></a> 
+        <a href="{{url_for('post_detail', post_id=post.id) }}" style="text-decoration: none; color: white;"><button type="button" class="w3-button w3-theme-d5 w3-margin-bottom" ><i class="fa fa-comment"></i> Comment</button></a> 
+     <div class="row ">
+        <div class="col-sm-12">
+        <form method="POST" action="">
+            {{ form.csrf_token }}
+            {{ form.hidden_tag() }}
+            {{ form.content(only_input=True,class="form-control",style="margin-bottom:10px;")}}
+            {{ form.submit(class="btn w3-button w3-theme-d5 ",style="margin-bottom:10px;") }}
+        </form>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="container">
+    <div class="w3-container">
+    <h3>Comments</h3>
+    <hr class="w3-clear">
+ 
+    {%- for comment in comments recursive %}
+              <br>
+              <div  href="#toggle{{loop.index}}" class="list-group-item" data-toggle="collapse">
+                  
+                <img  src="{{comment.author.picture}}" class="img-circle" height="40px" width="40px"><a href="{{url_for('profile', user_id=comment.author.id) }}" style="text-decoration: none;color: black;"> {{comment.author.name}}</a>  
+                <span class="w3-right w3-opacity">{{comment.get_json()['time']}} hours ago</span>
+                <br><br>
+                  {{comment.content|markdown}}
+                  <a href="{{url_for('upvote', post_id=comment.id) }}" style="text-decoration: none; color: white;"><button type="button" class="w3-button w3-theme-d5 w3-margin-bottom" >Upvote  {{comment.likes}}</button></a> 
+                  <a href="{{url_for('post_detail', post_id=comment.id) }}" style="text-decoration: none; color: white;"><button type="button" class="w3-button w3-theme-d5 w3-margin-bottom" ><i class="fa fa-comment"></i> Reply</button></a> 
+                </div>
+            {%- if comment.replies -%}
+            <div style="padding-left: 60px;" id="toggle{{loop.index}}">{{ loop(comment.replies) }}
+            </div>
+        {%- endif %}
+    {%- endfor %}
+</div>
+</div>
+{% endblock %}

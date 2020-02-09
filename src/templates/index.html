@@ -1,0 +1,35 @@
+{% extends 'layout_base.html' %}
+{% block content %}
+<div class="container">
+   <div class="col-sm-6">
+    <form method="POST" action="" enctype="multipart/form-data">
+        {{ form.csrf_token }}
+        {{ form.hidden_tag() }}
+        {{form.title.label}}<br>{{ form.title(class="form-control")}}<br>
+        {{ form.content(only_input=True, rows=10,cols=70,class="form-control") }}<br>
+        {{ form.submit(class="btn w3-button w3-theme-d5") }}
+    </form>
+</div>
+<div class="col-sm-6">
+  <h3>Preview</h3>
+  {{ form.content(only_preview=True) }}
+</div>
+</div>
+{% for post in posts %}
+<div class="container">
+<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+  <a href="{{url_for('post_detail', post_id=post.id) }}" style="text-decoration: none; color: black;"><h2>{{post.title}}</h2></a>
+    <small><b>Author</b> : <a href="{{url_for('profile', user_id=post.author.id) }} " style="text-decoration: none">{{post.author.name}}</a>,</small>
+    <small><b>Bagde</b> : Level {{post.author.get_badge_level()}}</small>
+    <span class="w3-right w3-opacity">{{post.get_json()['time']}} hours ago</span>
+    <hr class="w3-clear">
+    {{post.content|markdown}}    
+    <span class="display"></span>
+    <hr class="w3-clear">
+        <a href="{{url_for('upvote', post_id=post.id) }}" style="text-decoration: none; color: white;"><button type="button" class="w3-button w3-theme-d5 w3-margin-bottom" >Upvote  {{post.likes}}</button></a> 
+
+        <a href="{{url_for('post_detail', post_id=post.id) }}" style="text-decoration: none; color: white;"><button type="button" class="w3-button w3-theme-d5 w3-margin-bottom" ><i class="fa fa-comment"></i> Comment</button></a> 
+  </div>
+</div>
+{%endfor%}
+{%endblock%}

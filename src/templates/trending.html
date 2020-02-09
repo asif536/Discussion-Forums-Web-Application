@@ -1,0 +1,38 @@
+{% extends 'layout_base.html' %}
+{% block content %}
+<div class="w3-container w3-content" style="max-width:1400px;margin-top:10px">    
+<div class="w3-row">
+  <!-- Left Column -->
+  <div class="w3-col m3" style="margin-top:20px ;">
+<div class="w3-card w3-round">
+  <div class="w3-white">
+    <button class="w3-button w3-block w3-theme-d5 w3-left-align"><i class="fa fa-trophy	w3-margin-right"></i> <a style="text-decoration: none;color:white; margin-left: 30px;" >Most Active User </a></button>
+     {% for user in top_users %}
+        <div class="w3-button w3-block w3-theme-l1 w3-left-align">{{loop.index}} &nbsp;  &nbsp;  &nbsp;  &nbsp; {{user.score}} &nbsp;<a href="{{url_for('profile', user_id=user.id) }} " style="text-decoration: none;color:white; margin-left: 30px;">{{user.name}}</a>
+        </div>
+    {% endfor %}
+  </div>      
+</div>
+  </div>
+
+<div class="w3-col m8">
+  {% for post in posts %}
+  <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+    <a href="{{url_for('post_detail', post_id=post.id) }}" style="text-decoration: none"><h2>{{post.title}}</h2></a>
+    <small><b>Author</b>: <a href="{{url_for('profile', user_id=post.author.id) }} " style="text-decoration: none">{{post.author.name}}</a>,</small>
+    <small><b>Bagde </b>: Level {{post.author.get_badge_level()}}</small>
+    <span class="w3-right w3-opacity">{{post.get_json()['time']}} hours ago</span>
+
+    <hr class="w3-clear">
+    {{post.content|markdown}}
+    <hr class="w3-clear">
+    <a href="{{url_for('upvote', post_id=post.id) }}" style="text-decoration: none; color: white;"><button type="button" class="w3-button w3-theme-d5 w3-margin-bottom" >Upvote  {{post.likes}}</button></a> 
+    <a href="{{url_for('post_detail', post_id=post.id) }}" style="text-decoration: none; color: white;"><button type="button" class="w3-button w3-theme-d5 w3-margin-bottom" ><i class="fa fa-comment"></i> Comment</button></a> 
+  </div>
+  {% endfor%}
+
+  </div>
+  </div>
+  </div>
+
+{% endblock%}
