@@ -5,7 +5,7 @@
 
 ### Requirements
 
-The requirements for the application can be found [in the wiki, here](https://github.com/pbaisla/car-pool/wiki/Requirements)
+The requirements for the application can be found [in the wiki, here](https://github.com/asif536/glitter_web_app/wiki/Requirements)
 
 ### Project Plans
 
