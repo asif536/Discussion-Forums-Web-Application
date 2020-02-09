@@ -26,6 +26,7 @@ The API documentation can be found [here on Apiary](https://documenter.getpostma
 3. Postgresql (Production DB)
 4. Sentry
 5. Sqlite(Test DB)
+6. Postman
 
 ### how to run
 
