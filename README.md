@@ -26,9 +26,11 @@ The API documentation can be found [here on Apiary](https://documenter.getpostma
 1. Python 3
 2. Flask
 3. Postgresql (Production DB)
-4. Sentry
+4. SQLalchemy (ORM)
 5. Sqlite(Test DB)
 6. Postman
+7. Sentry
+8. Bootstrap
 
 ### how to run
 
