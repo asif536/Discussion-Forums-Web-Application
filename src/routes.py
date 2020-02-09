@@ -117,7 +117,7 @@ def index():
     if request.method=='POST' and current_user.is_authenticated==False:
         flash('Login Required')
         return redirect(url_for('index'))
-    posts_list=Comment.query.filter(Comment.parent_id==None,Comment.is_deleted==False).order_by(Comment.created_at.desc(),Comment.likes.desc()).all()
+    posts_list=Comment.query.filter(Comment.parent_id==None,Comment.is_deleted==False).order_by(Comment.created_at.desc()).all()
     return render_template('index.html',posts=posts_list,form=form)
 
 @app.route('/profile/<int:user_id>') 
@@ -199,7 +199,7 @@ def trending():
             "author": post.author.name,
             "title":post.title,
             "content": post.content,
-            "time": post.created_at,
+            "time": post.get_json()['time'],
             "upvotes": post.likes,
             "comment_list":comment_list
 
@@ -220,13 +220,13 @@ def get_posts(user_id):
 def get_replies(post_id):
     replies = Comment.query.filter_by(parent_id=post_id).all()
     if len(replies) == 0:
-        return jsonify({"messsage":"No Commnet Available"})
+        return jsonify({"messsage":"No Comment Available"})
     return jsonify([replie.get_json() for replie in replies])
 
 
 @app.route('/api/get_all_posts')
 def get_all_post():
-    posts=Comment.query.filter(Comment.parent_id==None,Comment.is_deleted==False).all()
+    posts=Comment.query.filter(Comment.parent_id==None,Comment.is_deleted==False).order_by(Comment.created_at.desc()).all()
     data=[]
     for post in posts:
         replies = Comment.query.filter_by(parent_id=post.id).all()
@@ -243,13 +243,10 @@ def get_all_post():
             "author": post.author.name,
             "title":post.title,
             "content": post.content,
-            "time": post.created_at,
+            "time": post.get_json()['time'],
             "upvotes": post.likes,
             "comment_list":comment_list
 
         }
         data.append(post_list)
     return jsonify({"data":data})
-
-
-
