@@ -1,6 +1,10 @@
 # Discussion Forum Web App
  A web app for Bloging. User can create post and comment on post.Based on user activity user will get badges.
  
+#### Demo Link
+
+https://glitter-web-app.herokuapp.com/
+
 ### Screenshots
 
 <img width="1280" alt="Screenshot 2021-04-21 at 5 19 37 PM" src="https://user-images.githubusercontent.com/20842692/115549405-403e9680-a2c6-11eb-8a0c-a13667a3cc68.png">
