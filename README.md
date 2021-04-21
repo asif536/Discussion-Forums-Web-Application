@@ -1,7 +1,14 @@
 # Discussion Forum Web App
  A web app for Bloging. User can create post and comment on post.Based on user activity user will get badges.
  
-## Information
+### Screenshots
+
+<img width="1280" alt="Screenshot 2021-04-21 at 5 19 37 PM" src="https://user-images.githubusercontent.com/20842692/115549405-403e9680-a2c6-11eb-8a0c-a13667a3cc68.png">
+<img width="1275" alt="Screenshot 2021-04-21 at 5 19 56 PM" src="https://user-images.githubusercontent.com/20842692/115549412-42085a00-a2c6-11eb-8607-acd242a763e4.png">
+<img width="1280" alt="Screenshot 2021-04-21 at 5 20 27 PM" src="https://user-images.githubusercontent.com/20842692/115549420-43398700-a2c6-11eb-8ef0-a15265997edc.png">
+<img width="1280" alt="Screenshot 2021-04-21 at 5 21 34 PM" src="https://user-images.githubusercontent.com/20842692/115549482-53e9fd00-a2c6-11eb-867d-997f447305e9.png">
+ 
+## Dev Documentations
 
 ### Requirements
 
